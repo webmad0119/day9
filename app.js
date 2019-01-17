@@ -142,6 +142,32 @@ var app = {
             drawCosine(1)
         }
 
+        var xPosFinal = 0
+
+        function animateCollision() {
+            var sense = 1
+
+            setInterval(function () {
+                ctx.clearRect(0, 0, w, h)
+
+                ctx.beginPath()
+                ctx.arc(xPosFinal += sense, h / 2, 40, 0, Math.PI * 2, true);
+                ctx.fillStyle = `rgb(100, 0 , 0)`
+                ctx.fill();
+                ctx.closePath()
+
+                if (xPosFinal === w / 4) {
+                    sense = -1
+                }
+
+                if (xPosFinal === 0) {
+                    sense = 1
+                }
+            }, 1)
+        }
+
+        animateCollision()
+
         //drawBigCircle()
 
         document.getElementById("stop").onclick = function () {
