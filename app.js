@@ -100,7 +100,7 @@ var app = {
                 }
             }
 
-            drawC(80/2, "#cccccc")
+            drawC(80 / 2, "#cccccc")
             // drawC(100/2, "#ff0000")
 
             // ctx.strokeStyle ="#ff0000"
@@ -112,7 +112,41 @@ var app = {
         //drawLines()
         // drawTriangles()
 
-        drawCircle()
+        // drawCircle()
+
+        function drawBigCircle() {
+            var intervalID
+
+            function drawCosine(timing) {
+                var xPos = 0, yPos = h / 2, radius = 50, angle = 0
+
+                intervalID = setInterval(function () {
+                    //ctx.clearRect(0, 0, w, h)
+
+                    angle += 1
+                    var xPosFinal = xPos + 200 * Math.sin(angle * Math.PI / 180) + w / 2
+                    var yPosFinal = yPos + 200 * Math.cos(angle * Math.PI / 180)
+
+                    ctx.beginPath()
+                    ctx.arc(xPosFinal, yPosFinal, Math.random() * 40, 0, Math.PI * 2, true);
+                    ctx.fillStyle = `rgb(${Math.random() * 255}, 0 , 0)`
+                    ctx.fill();
+                    ctx.closePath()
+
+                    if (angle > 360 * 1) {
+                        clearInterval(intervalID)
+                    }
+                }, timing)
+            }
+
+            drawCosine(1)
+        }
+
+        //drawBigCircle()
+
+        document.getElementById("stop").onclick = function () {
+            clearInterval(intervalID)
+        }
     },
     init: function (canvasSelector) {
         this.canvasDOM = document.querySelector(canvasSelector)

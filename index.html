@@ -11,10 +11,22 @@
         body {
             overflow: hidden;
         }
+
+        canvas {
+            background: black;
+        }
+
+        #stop {
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 40px;
+        }
     </style>
 </head>
 
 <body>
+    <button id="stop">Stop animation!</button>
     <canvas id="canvasExp"></canvas>
 
     <script src="app.js"></script>
